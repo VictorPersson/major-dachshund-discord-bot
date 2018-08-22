@@ -16,10 +16,14 @@ client.on('ready', () => {
 
 // Sends a message back to the user in the same channel
 client.on('message', message => {
-    if (message.content === '!marko' || '!Marko') {
-            message.channel.send('Polo!');
+    if (message.content === `${prefix}marko`) {
+        message.channel.send('Polo!');
+    }
+    else if (message.content === `${prefix}beep`) {
+        message.channel.send('Boop!');
     }
 });
 
 // The bots password aka Token, never leak/share.
 client.login(token);
+
