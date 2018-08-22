@@ -14,13 +14,18 @@ client.on('ready', () => {
     console.log('☆ All hands on deck! ☆ \n Major Bot is now online \n' + spacer);
 });
 
-// Sends a message back to the user in the same channel
+// Sends a message back to the user in the same channel, uses the dynamic {prefix} from the config file where it can be changed.
 client.on('message', message => {
     if (message.content === `${prefix}marko`) {
         message.channel.send('Polo!');
     }
-    else if (message.content === `${prefix}beep`) {
+    // Will trigger whenever beep is mention, !beeping, !beepoliros or !beep test. 
+    else if (message.content.startsWith === `${prefix}beep`) {
         message.channel.send('Boop!');
+    }
+    // Checks for keyword 'server' and sends back the name of the guild aka server.
+    else if (message.content === `${prefix}server`) {
+        message.channel.send(`Server's name is: ${message.guild.name}`);
     }
 });
 
