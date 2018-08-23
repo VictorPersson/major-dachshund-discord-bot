@@ -19,13 +19,24 @@ client.on('message', message => {
     if (message.content === `${prefix}marko`) {
         message.channel.send('Polo!');
     }
+
     // Will trigger whenever beep is mention, !beeping, !beepoliros or !beep test. 
     else if (message.content.startsWith === `${prefix}beep`) {
         message.channel.send('Boop!');
     }
+
     // Checks for keyword 'server' and sends back the name of the guild aka server.
     else if (message.content === `${prefix}server`) {
-        message.channel.send(`Server's name is: ${message.guild.name}`);
+        message.channel.send(`
+        Server's name is: ${message.guild.name}\nTotal users: ${message.guild.memberCount}\nServer location: ${message.guild.region}
+        `);
+    }
+
+    // Checks for the term !user-info,returns name and ID of the user (author) who send the request
+    else if (message.content === `${prefix}user-info`) {
+        message.channel.send(`
+        Your user name is: ${message.author.username}\nYour ID is: ${message.author.id}
+        `)
     }
 });
 
