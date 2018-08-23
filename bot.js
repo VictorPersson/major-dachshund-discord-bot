@@ -16,12 +16,24 @@ client.on('ready', () => {
 
 // Sends a message back to the user in the same channel, uses the dynamic {prefix} from the config file where it can be changed.
 client.on('message', message => {
+
+    // Checks if the user message doesn't start with an ! or is written by the bot,then the following code will NOT run.
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+
+    // Creates an args variable which slices off the ! and then splits it into an array with spaces
+    const args = message.content.slice(prefix.length).split('/ +/');
+
+    // Creats a command variable, which takes the first element of the array returns it, also removing it from the original array
+    const command = args.shift().toLowerCase();
+
+
     if (message.content === `${prefix}marko`) {
         message.channel.send('Polo!');
     }
 
-    // Will trigger whenever beep is mention, !beeping, !beepoliros or !beep test. 
-    else if (message.content.startsWith === `${prefix}beep`) {
+    // Will trigger whenever beep is mention
+    else if (message.content === `${prefix}beep`) {
         message.channel.send('Boop!');
     }
 
@@ -37,6 +49,20 @@ client.on('message', message => {
         message.channel.send(`
         Your user name is: ${message.author.username}\nYour ID is: ${message.author.id}
         `)
+    }
+
+    // If the command if !args-info and is not followed up, it tags the user and says so. If user does provide argiments after !args-info
+    // -the bot will return what the user wrote. Thirdly, if the first word in the array [0] is foo, you recive 'bar' back.
+    else if (command === 'args-info') {
+        if (!args.length) {
+            return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
+        }
+
+        else if (args[0] === 'foo') {
+            return message.channel.send('bar');
+        }
+
+        message.channel.send(`Command name: ${command}\nArguments: ${args}\nFirst argument: ${args[0]}`);
     }
 });
 
