@@ -86,15 +86,16 @@ client.on('message', message => {
     }
 
     else if (command === `avatar`) {
+        // Checks to see if there are no follow up message/argument, then disply authors avatar
         if (!message.mentions.users.size) {
             message.channel.send(`This is your avatar ${message.author.displayAvatarURL}`);
         }
-
+        // Creates a array which maps over all mentions of users and returns thier avatars as a URL img.
         const avatarList = message.mentions.users.map(user => {
             return `${user.username}'s avatar: ${user.displayAvatarURL}`;
 
         });
-
+        // Posts/sends the list of avatar URLS
         message.channel.send(avatarList);
     }
 
