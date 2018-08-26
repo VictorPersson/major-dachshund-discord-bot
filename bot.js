@@ -18,11 +18,11 @@ client.on('ready', () => {
 client.on('message', message => {
 
     // Checks if the user message doesn't start with an ! or is written by the bot,then the following code will NOT run.
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
+    // if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 
     // Creates an args variable which slices off the ! and then splits it into an array with spaces
-    const args = message.content.slice(prefix.length).split('/ +/');
+    const args = message.content.slice(prefix.length).split(/ +/);
 
     // Creats a command variable, which takes the first element of the array returns it, also removing it from the original array
     const command = args.shift().toLowerCase();
@@ -33,8 +33,11 @@ client.on('message', message => {
     }
 
     // Will trigger whenever beep is mention
-    else if (message.content === `${prefix}beep`) {
-        message.channel.send('Boop!');
+    else if (message.content === `Är Eddie bögen i buren?`) {
+        message.channel.send('Nej, han är ju lös! Ahhhhhh!');
+    }
+    else if (message.content === `Är Victor bögen i buren?`) {
+        message.channel.send('Är det något fel med att vara homosexuell eller?');
     }
 
     // Checks for keyword 'server' and sends back the name of the guild aka server.
@@ -64,7 +67,57 @@ client.on('message', message => {
 
         message.channel.send(`Command name: ${command}\nArguments: ${args}\nFirst argument: ${args[0]}`);
     }
+
+
+    else if (command === 'kick') {
+
+        // grab the "first" mentioned user from the message
+        // this will return a `User` object, just like `message.author`
+        const taggedUser = message.mentions.users.first();
+
+        // if (!message.mentions.user.size) / If there are no tagged users (false) / 0 number do this.
+        if (taggedUser === undefined) {
+            return message.reply('You did not mention any existing user! You must use tag @username')
+        }
+
+        else {
+            message.reply(`You wanted to kick: ${taggedUser.username}`);
+        }
+    }
+
+    else if (command === `avatar`) {
+        if (!message.mentions.users.size) {
+            message.channel.send(`This is your avatar ${message.author.displayAvatarURL}`);
+        }
+
+        const avatarList = message.mentions.users.map(user => {
+            return `${user.username}'s avatar: ${user.displayAvatarURL}`;
+
+        });
+
+        message.channel.send(avatarList);
+    }
+
+    else if (command === 'delete') {
+
+        // Creates an amount variable which stores the user number int input in an array.
+        const amount = parseInt(args[0]);
+
+        // Checks to see if the amount given IS NOT A NUMBER, if so, send feeedback and try again.
+        if (isNaN(amount)) {
+            return message.reply(`"${message.content}" doesn't seem to be a number`);
+        }
+        // Parse can only remove a minimum of 2 objects and a max of 100 so this if/else try is needed to avoid errors.
+        else if (amount < 2 || amount > 100) {
+            return message.channel(`You have to input a number between 2 and 100`);
+        }
+
+        // Removes the given amount of messages in the channel
+        message.channel.bulkDelete(amount);
+    }
+
 });
+
 
 // The bots password aka Token, never leak/share.
 client.login(token);
