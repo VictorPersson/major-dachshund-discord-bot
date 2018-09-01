@@ -103,7 +103,7 @@ client.on('message', message => {
 
         // Creates an amount variable which stores the user number int input in an array.
         // + 1 since if you wish to remove 5 messages it will remove yours, and 4 more. Hence the +1 to make it accurate.
-        const amount = parseInt(args[0] + 1);
+        const amount = parseInt(args[0]) + 1;
 
         // Checks to see if the amount given IS NOT A NUMBER, if so, send feeedback and try again.
         if (isNaN(amount)) {
