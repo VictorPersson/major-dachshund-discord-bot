@@ -20,7 +20,6 @@ client.on('message', message => {
     // Checks if the user message doesn't start with an ! or is written by the bot,then the following code will NOT run.
     // if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-
     // Creates an args variable which slices off the ! and then splits it into an array with spaces
     const args = message.content.slice(prefix.length).split(/ +/);
 
