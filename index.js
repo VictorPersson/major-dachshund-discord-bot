@@ -13,7 +13,7 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
-    client.commands.set(command.name, commands);
+    client.commands.set(command.name, command);
     console.log(file)
 }
 
@@ -29,11 +29,28 @@ client.on('message', message => {
     const command = args.shift().toLowerCase();
 
     if (command === 'marko') {
-        message.channel.send('Polo!');
+        client.commands.get('marko').execute(message, args);
     }
-
     else if (command === 'ping') {
-        message.channel.send('!Pong');
+        client.commands.get('ping').execute(message, args);
+    }
+    else if (command === 'server') {
+        client.commands.get('server').execute(message, args);
+    }
+    else if (command === 'avatar') {
+        client.commands.get('avatar').execute(message, args);
+    }
+    else if (command === 'delete') {
+        client.commands.get('delete').execute(message, args);
+    }
+    else if (command === 'kick') {
+        client.commands.get('kick').execute(message, args);
+    }
+    else if (command === 'user-info') {
+        client.commands.get('user-info').execute(message, args);
+    }
+    else if (command === 'args-info') {
+        client.commands.get('args-info').execute(message, args)
     }
 });
 
