@@ -34,7 +34,8 @@ client.on('message', message => {
     // Will trigger whenever beep is mention
     else if (message.content === `Är Eddie bögen i buren?`) {
         message.channel.send('Nej, han är ju lös! Ahhhhhh!');
-    }
+    } 
+    
     else if (message.content === `Är Victor bögen i buren?`) {
         message.channel.send('Är det något fel med att vara homosexuell eller?');
     }
