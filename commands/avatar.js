@@ -1,7 +1,8 @@
 module.exports = {
     name: 'avatar',
     description: 'Prints the discord avatar for the tagged user',
-    execute(message) {
+    aliases: ['pic', 'icon', 'pfp', 'image'],
+    execute(message, args) {
         if (!message.mentions.users.size) {
             message.channel.send(`This is your avatar ${message.author.displayAvatarURL}`);
         }
