@@ -5,25 +5,6 @@ const { prefix, token } = require('./config.json');
 // Greats a new client
 const client = new Discord.Client();
 
-const exampleEmbed = new Discord.RichEmbed()
-    .setColor('#ff6677')
-    .setTitle('First Embed')
-    .setURL('[Victor Persson](https://victorp.se)')
-    .setAuthor('Victor Persson', 'http://victorp.se/img/v_logo_only_v.png', 'https://victorp.se')
-    .setDescription('My first Discord.js embed')
-    .setThumbnail('http://victorp.se/img/v_logo_outside_pink_glow.png')
-    .addField('Field 1 title', 'Major D. barks: Lorem Iplusmilulumumum ')
-    .addBlankField()
-    .addField('Inline-block (true) text here', true)
-    .addField('Inline-block text here', true)
-    .addField('Inline-block text here', true)
-    .addField('Inline-block text here', true)
-    .setImage('https://github.com/VictorPersson/tax-deluxen/blob/master/img/tax1.png')
-    .setTimestamp()
-    .setFooter('Bottom footer text', 'http://victorp.se/img/v_logo_only_v.png');
-    
-channel.send(exampleEmbed);
-
 const spacer = ('▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄');
 // Imports and creates an extented version of JS array functions
 client.commands = new Discord.Collection();
@@ -95,7 +76,27 @@ try {
 catch (error) {
     console.log(error);
     message.reply('An error occurred trying to execute your command.')
-}
+
+    const exampleEmbed = new Discord.RichEmbed()
+        .setColor('#ff6677')
+        .setTitle('First Embed')
+        .setURL('[Victor Persson](https://victorp.se)')
+        .setAuthor('Victor Persson', 'http://victorp.se/img/v_logo_only_v.png', 'https://victorp.se')
+        .setDescription('My first Discord.js embed')
+        .setThumbnail(['../img/v_logo_outside_pink_glow.png'])
+        .addField('Field 1 title', 'Major D. barks: Lorem Iplusmilulumumum ')
+        .addBlankField()
+        .addField('Inline-block (true) text here', true)
+        .addField('Inline-block text here', true)
+        .addField('Inline-block text here', true)
+        .addField('Inline-block text here', true)
+        .setImage('https://github.com/VictorPersson/tax-deluxen/blob/master/img/tax1.png')
+        .setTimestamp()
+        .setFooter('Bottom footer text', 'http://victorp.se/img/v_logo_only_v.png');
+        
+    message.channel.sendEmbed(exampleEmbed);
+
+    }
 });
 
 client.login(token);
