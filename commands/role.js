@@ -4,6 +4,12 @@ module.exports = {
     args: true,
     usage: '<user> <role>',
     execute(message, args) {
-        
+        if (member.roles.some(role => role.name === 'Admin')) {
+            message.channel.send('Hello lamkött!');
+            console.log('Worki work')
+         }
+         else {
+             console.log('Error')
+         }
     }
 }
