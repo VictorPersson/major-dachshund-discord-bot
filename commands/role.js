@@ -13,3 +13,6 @@ module.exports = {
          }
     }
 }
+
+
+// https://discordjs.guide/#/popular-topics/permissions
